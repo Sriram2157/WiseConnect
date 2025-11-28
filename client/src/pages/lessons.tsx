@@ -78,12 +78,12 @@ export default function LessonsPage() {
 
   return (
     <div className="container max-w-4xl mx-auto px-6 py-8 pb-28 md:pb-12 space-y-8">
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex items-start justify-between gap-4 animate-fade-in-down">
         <div className="space-y-2">
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground">
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground animate-fade-in-up">
             Your Lessons
           </h1>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl text-muted-foreground animate-fade-in-up" style={{ animationDelay: '100ms' }}>
             Learn at your own pace with step-by-step guidance
           </p>
         </div>
@@ -130,7 +130,7 @@ function LessonCard({ lesson, number }: { lesson: LessonWithProgress; number: nu
   return (
     <Link href={`/lessons/${lesson.id}`}>
       <Card 
-        className={`border-2 hover-elevate cursor-pointer transition-all ${
+        className={`border-2 card-hover cursor-pointer animate-fade-in-up animate-stagger-enter ${
           isCompleted ? "border-success/30 bg-success/5" : ""
         }`}
         data-testid={`card-lesson-${lesson.id}`}

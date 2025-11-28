@@ -80,12 +80,12 @@ export default function CommunityPage() {
 
   return (
     <div className="container max-w-4xl mx-auto px-6 py-8 pb-28 md:pb-12 space-y-8">
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex items-start justify-between gap-4 animate-fade-in-down">
         <div className="space-y-2">
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground">
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground animate-fade-in-up">
             Community
           </h1>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl text-muted-foreground animate-fade-in-up" style={{ animationDelay: '100ms' }}>
             Ask questions and share tips with fellow learners
           </p>
         </div>
@@ -182,7 +182,7 @@ function PostCard({ post }: { post: CommunityPost }) {
   const timeAgo = getTimeAgo(new Date(post.createdAt || Date.now()));
 
   return (
-    <Card className="border-2 hover-elevate">
+    <Card className="border-2 card-hover animate-fade-in-up animate-stagger-enter">
       <CardContent className="pt-8 pb-8 space-y-4">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-3">

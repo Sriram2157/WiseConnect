@@ -42,12 +42,12 @@ export default function HomePage() {
 
   return (
     <div className="container max-w-4xl mx-auto px-6 py-8 pb-28 md:pb-12 space-y-10">
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex items-start justify-between gap-4 animate-fade-in-down">
         <div className="space-y-2">
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground" data-testid="text-welcome">
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground animate-fade-in-up" data-testid="text-welcome">
             Welcome back, {user.name}!
           </h1>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl text-muted-foreground animate-fade-in-up" style={{ animationDelay: '100ms' }}>
             Ready to continue your learning journey?
           </p>
         </div>
@@ -55,7 +55,7 @@ export default function HomePage() {
       </div>
 
       {progressStats && (
-        <Card className="border-2">
+        <Card className="border-2 card-hover animate-fade-in-up" style={{ animationDelay: '200ms' }}>
           <CardContent className="pt-8 pb-8 space-y-4">
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-4">
@@ -79,7 +79,7 @@ export default function HomePage() {
       )}
 
       {currentLesson && (
-        <Card className="border-2 border-primary/30 bg-primary/5">
+        <Card className="border-2 border-primary/30 bg-primary/5 card-hover animate-fade-in-up animate-glow" style={{ animationDelay: '300ms' }}>
           <CardHeader className="pb-4">
             <div className="flex items-center gap-3 text-primary">
               <Sparkles className="h-6 w-6" />
@@ -117,7 +117,7 @@ export default function HomePage() {
       )}
 
       {!currentLesson && completedLessons > 0 && completedLessons === lessons?.length && (
-        <Card className="border-2 border-success/30 bg-success/5">
+        <Card className="border-2 border-success/30 bg-success/5 card-hover animate-fade-in-up animate-bounce-subtle" style={{ animationDelay: '300ms' }}>
           <CardContent className="pt-8 pb-8 text-center space-y-4">
             <div className="flex justify-center">
               <div className="flex h-20 w-20 items-center justify-center rounded-full bg-success/20">
@@ -145,7 +145,7 @@ export default function HomePage() {
 
       <div className="grid gap-6 md:grid-cols-2">
         <Link href="/lessons">
-          <Card className="border-2 hover-elevate cursor-pointer h-full">
+          <Card className="border-2 card-hover cursor-pointer h-full animate-fade-in-up animate-stagger-enter" style={{ animationDelay: '400ms' }} data-testid="card-lessons-shortcut">
             <CardContent className="pt-8 pb-8 flex flex-col items-center text-center space-y-4">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10">
                 <BookOpen className="h-9 w-9 text-primary" />
@@ -163,7 +163,7 @@ export default function HomePage() {
         </Link>
 
         <Link href="/community">
-          <Card className="border-2 hover-elevate cursor-pointer h-full">
+          <Card className="border-2 card-hover cursor-pointer h-full animate-fade-in-up animate-stagger-enter" style={{ animationDelay: '480ms' }} data-testid="card-community-shortcut">
             <CardContent className="pt-8 pb-8 flex flex-col items-center text-center space-y-4">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-accent/20">
                 <Users className="h-9 w-9 text-accent-foreground" />
