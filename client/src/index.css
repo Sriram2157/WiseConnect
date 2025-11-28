@@ -2,51 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-/* LIGHT MODE */
+/* LIGHT MODE - WiseConnect Senior-Friendly Theme */
 :root {
-  --button-outline: rgba(0,0,0, .10);
-  --badge-outline: rgba(0,0,0, .05);
-  --opaque-button-border-intensity: -8;
-  --elevate-1: rgba(0,0,0, .03);
-  --elevate-2: rgba(0,0,0, .08);
-  --background: 0 0% 100%;
-  --foreground: 0 0% 10%;
-  --border: 0 0% 91%;
-  --card: 0 0% 98%;
-  --card-foreground: 0 0% 10%;
-  --card-border: 0 0% 94%;
-  --sidebar: 0 0% 96%;
-  --sidebar-foreground: 0 0% 10%;
-  --sidebar-border: 0 0% 92%;
-  --sidebar-primary: 210 85% 45%;
-  --sidebar-primary-foreground: 210 85% 98%;
-  --sidebar-accent: 0 0% 90%;
-  --sidebar-accent-foreground: 0 0% 10%;
-  --sidebar-ring: 210 85% 45%;
-  --popover: 0 0% 94%;
-  --popover-foreground: 0 0% 10%;
-  --popover-border: 0 0% 90%;
-  --primary: 210 85% 45%;
-  --primary-foreground: 210 85% 98%;
-  --secondary: 0 0% 88%;
-  --secondary-foreground: 0 0% 10%;
-  --muted: 0 0% 92%;
-  --muted-foreground: 0 0% 30%;
-  --accent: 210 12% 90%;
-  --accent-foreground: 210 12% 12%;
-  --destructive: 0 75% 42%;
-  --destructive-foreground: 0 75% 98%;
-  --input: 0 0% 75%;
-  --ring: 210 85% 45%;
-  --chart-1: 210 85% 35%;
-  --chart-2: 150 75% 32%;
-  --chart-3: 30 85% 38%;
-  --chart-4: 280 70% 40%;
-  --chart-5: 25 80% 42%;
-  --font-sans: Open Sans, sans-serif;
+  --button-outline: rgba(0,0,0, .12);
+  --badge-outline: rgba(0,0,0, .08);
+  --opaque-button-border-intensity: -10;
+  --elevate-1: rgba(0,0,0, .04);
+  --elevate-2: rgba(0,0,0, .10);
+  --background: 210 20% 98%;
+  --foreground: 220 25% 10%;
+  --border: 210 15% 85%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 25% 10%;
+  --card-border: 210 15% 88%;
+  --sidebar: 210 25% 96%;
+  --sidebar-foreground: 220 25% 10%;
+  --sidebar-border: 210 15% 88%;
+  --sidebar-primary: 168 70% 35%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 210 20% 92%;
+  --sidebar-accent-foreground: 220 25% 10%;
+  --sidebar-ring: 168 70% 35%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 25% 10%;
+  --popover-border: 210 15% 88%;
+  --primary: 168 70% 35%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 20% 92%;
+  --secondary-foreground: 220 25% 15%;
+  --muted: 210 15% 94%;
+  --muted-foreground: 220 15% 40%;
+  --accent: 35 90% 55%;
+  --accent-foreground: 35 90% 10%;
+  --destructive: 0 70% 50%;
+  --destructive-foreground: 0 0% 100%;
+  --input: 210 15% 75%;
+  --ring: 168 70% 35%;
+  --chart-1: 168 70% 35%;
+  --chart-2: 35 90% 55%;
+  --chart-3: 200 75% 45%;
+  --chart-4: 280 60% 50%;
+  --chart-5: 15 80% 50%;
+  --success: 145 65% 38%;
+  --success-foreground: 0 0% 100%;
+  --warning: 35 90% 55%;
+  --warning-foreground: 35 90% 10%;
+  --font-sans: 'Open Sans', system-ui, -apple-system, sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
-  --radius: .5rem;
+  --radius: .625rem;
   --shadow-2xs: 0px 2px 0px 0px hsl(0 0% 0% / 0.00);
   --shadow-xs: 0px 2px 0px 0px hsl(0 0% 0% / 0.00);
   --shadow-sm: 0px 2px 0px 0px hsl(0 0% 0% / 0.00), 0px 1px 2px -1px hsl(0 0% 0% / 0.00);
@@ -88,45 +92,49 @@
 }
 
 .dark {
-  --button-outline: rgba(255,255,255, .10);
-  --badge-outline: rgba(255,255,255, .05);
-  --opaque-button-border-intensity: 9;
-  --elevate-1: rgba(255,255,255, .04);
-  --elevate-2: rgba(255,255,255, .09);
-  --background: 0 0% 8%;
-  --foreground: 0 0% 95%;
-  --border: 0 0% 18%;
-  --card: 0 0% 10%;
-  --card-foreground: 0 0% 95%;
-  --card-border: 0 0% 14%;
-  --sidebar: 0 0% 12%;
-  --sidebar-foreground: 0 0% 95%;
-  --sidebar-border: 0 0% 16%;
-  --sidebar-primary: 210 85% 50%;
-  --sidebar-primary-foreground: 210 85% 98%;
-  --sidebar-accent: 0 0% 16%;
-  --sidebar-accent-foreground: 0 0% 95%;
-  --sidebar-ring: 210 85% 50%;
-  --popover: 0 0% 14%;
-  --popover-foreground: 0 0% 95%;
-  --popover-border: 0 0% 18%;
-  --primary: 210 85% 45%;
-  --primary-foreground: 210 85% 98%;
-  --secondary: 0 0% 18%;
-  --secondary-foreground: 0 0% 95%;
-  --muted: 0 0% 16%;
-  --muted-foreground: 0 0% 75%;
-  --accent: 210 12% 18%;
-  --accent-foreground: 210 12% 92%;
-  --destructive: 0 75% 42%;
-  --destructive-foreground: 0 75% 98%;
-  --input: 0 0% 30%;
-  --ring: 210 85% 50%;
-  --chart-1: 210 85% 65%;
-  --chart-2: 150 75% 68%;
-  --chart-3: 30 85% 70%;
-  --chart-4: 280 70% 72%;
-  --chart-5: 25 80% 68%;
+  --button-outline: rgba(255,255,255, .12);
+  --badge-outline: rgba(255,255,255, .08);
+  --opaque-button-border-intensity: 12;
+  --elevate-1: rgba(255,255,255, .05);
+  --elevate-2: rgba(255,255,255, .12);
+  --background: 220 20% 10%;
+  --foreground: 210 20% 95%;
+  --border: 220 15% 22%;
+  --card: 220 18% 14%;
+  --card-foreground: 210 20% 95%;
+  --card-border: 220 15% 20%;
+  --sidebar: 220 20% 12%;
+  --sidebar-foreground: 210 20% 95%;
+  --sidebar-border: 220 15% 20%;
+  --sidebar-primary: 168 65% 45%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 220 18% 20%;
+  --sidebar-accent-foreground: 210 20% 95%;
+  --sidebar-ring: 168 65% 45%;
+  --popover: 220 18% 16%;
+  --popover-foreground: 210 20% 95%;
+  --popover-border: 220 15% 22%;
+  --primary: 168 65% 45%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 15% 22%;
+  --secondary-foreground: 210 20% 92%;
+  --muted: 220 15% 18%;
+  --muted-foreground: 210 15% 65%;
+  --accent: 35 85% 55%;
+  --accent-foreground: 35 90% 10%;
+  --destructive: 0 65% 55%;
+  --destructive-foreground: 0 0% 100%;
+  --input: 220 15% 30%;
+  --ring: 168 65% 45%;
+  --chart-1: 168 65% 55%;
+  --chart-2: 35 85% 60%;
+  --chart-3: 200 70% 55%;
+  --chart-4: 280 55% 60%;
+  --chart-5: 15 75% 58%;
+  --success: 145 60% 48%;
+  --success-foreground: 0 0% 100%;
+  --warning: 35 85% 55%;
+  --warning-foreground: 35 90% 10%;
   --shadow-2xs: 0px 2px 0px 0px hsl(0 0% 0% / 0.00);
   --shadow-xs: 0px 2px 0px 0px hsl(0 0% 0% / 0.00);
   --shadow-sm: 0px 2px 0px 0px hsl(0 0% 0% / 0.00), 0px 1px 2px -1px hsl(0 0% 0% / 0.00);
@@ -172,6 +180,41 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  /* Accessibility: Text size preferences */
+  [data-text-size="medium"] body {
+    font-size: 18px;
+  }
+
+  [data-text-size="large"] body {
+    font-size: 20px;
+  }
+
+  [data-text-size="extra-large"] body {
+    font-size: 22px;
+  }
+
+  /* Focus styles for accessibility - thick, visible rings */
+  :focus-visible {
+    @apply outline-none ring-4 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  /* High contrast mode adjustments */
+  .high-contrast {
+    --foreground: 0 0% 0%;
+    --background: 0 0% 100%;
+    --muted-foreground: 0 0% 20%;
+    --border: 0 0% 50%;
+  }
+
+  .dark.high-contrast {
+    --foreground: 0 0% 100%;
+    --background: 0 0% 0%;
+    --muted-foreground: 0 0% 80%;
+    --border: 0 0% 60%;
   }
 }
 
