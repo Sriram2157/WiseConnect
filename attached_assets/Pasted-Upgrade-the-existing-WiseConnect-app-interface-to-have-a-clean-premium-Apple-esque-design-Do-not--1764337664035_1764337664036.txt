@@ -1,0 +1,60 @@
+Upgrade the existing WiseConnect app interface to have a clean, premium, Apple-esque design. Do not change the core functionality. Focus entirely on the visual style, motion, and overall feeling of smoothness.
+
+## Design Style (Apple-Inspired)
+- Use lots of spacing, soft gradients, gentle blurs, and smooth rounded corners.
+- Add subtle glassmorphism effects (light frosted glass panels, translucent backgrounds).
+- Use a calm, minimal color palette (whites, soft grays, light blues, gentle neutrals).
+- Use high-quality typography similar to Apple’s design: San Francisco style or a clean modern sans-serif.
+- Make the UI feel “airy” and breathable.
+
+## Animations & Motion
+Include animations inspired by iOS:
+- Smooth page transitions (fade, slide, or dissolve).
+- Button hover and tap animations with gentle scaling.
+- Cards that subtly lift or glow on hover.
+- A smooth spring animation when elements appear or pop in.
+- Animated progress indicators with fluid movement.
+- Staggered fade-ins for lists or modules.
+- Smooth scrolling with inertia.
+
+All animations must feel soft and elegant, not distracting.
+
+## Components to Update Visually
+1. **Navigation Bar**
+   - Clean bottom tab bar with icons + labels.
+   - Soft blur background to create a floating iOS-style effect.
+
+2. **Lesson Cards**
+   - Rounded corners (18–24px).
+   - Slight shadow or depth.
+   - Light hover animations that increase brightness or lift slightly.
+
+3. **Buttons**
+   - Large, rounded, smooth.
+   - Glossy or slightly translucent styles.
+   - Tap animation: subtle scale down + fade ripple.
+
+4. **Progress Bar**
+   - Smooth animated fill.
+   - Soft gradient matching the theme.
+
+5. **Community Page**
+   - Messages appear with staggered fade-in.
+   - Clean bubbles or card-style posts similar to iMessage or iOS notifications.
+
+## Effects to Include
+- Light frosted glass backgrounds for headers or toolbars.
+- Subtle depth using layered shadows.
+- Dynamic motion (elements slide in with spring easing).
+- Gentle glow or shimmer effects for completion badges.
+- Smooth hover states that look like iOS UI interactions.
+
+## Code Guidance
+- Use CSS transitions, keyframes, or a library like Framer Motion for smooth animations.
+- Keep all interactions consistent with iOS design philosophy.
+- Avoid harsh edges, sharp color contrasts, or fast, jarring animations.
+
+## Final Goal
+Make the app feel like a premium Apple product:
+clean, smooth, modern, airy, animated, and visually delightful.
+Keep everything intuitive for older adults while giving it a polished, world-class design.
