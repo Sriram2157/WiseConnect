@@ -1,0 +1,80 @@
+Build an application called **WiseConnect**, designed to help older adults (ages 50+) learn how to use digital technology with confidence.
+
+## App Purpose
+WiseConnect should teach seniors essential digital skills through simple, interactive lessons. The app should be extremely easy to navigate, visually clear, and accessible for people with limited tech experience, reduced vision, or reduced dexterity.
+
+## Target Users
+Older adults aged 50+, including:
+- Seniors with low digital literacy
+- People with poor eyesight or hearing
+- Seniors who struggle with complex interfaces
+- Users who have never used learning apps before
+
+## Core Features
+1. **Onboarding Quiz**
+   - Simple multiple-choice quiz
+   - Measures digital literacy level
+   - Determines preferred learning style (visual, auditory, or mixed)
+
+2. **Personalized Learning Paths**
+   - Based on the quiz results
+   - Show a clear “Start Learning” button
+   - Lessons should be small, simple, and step-by-step
+
+3. **Lesson Modules (MVP)**
+   Include at least 3 basic modules:
+   - How to set up an email
+   - How to make a video call
+   - How to use essential apps (camera, messages, browser)
+
+   Each lesson should include:
+   - Large buttons
+   - Visual cues
+   - Simple explanations
+   - Optional voice instructions
+
+4. **Accessibility Features**
+   - Large text size
+   - High contrast design
+   - Voice instructions (text-to-speech)
+   - Simple navigation (Next, Back, Home)
+   - Option to enlarge buttons
+
+5. **Progress Tracker**
+   - Simple progress bar
+   - Shows lesson completion
+   - Encourages motivation without complexity
+
+6. **Community Support Page**
+   - Simple message board where seniors can ask questions
+   - Pre-set categories like:
+     - “Need help”
+     - “Learning tips”
+     - “General questions”
+
+7. **Security & Safety**
+   - Safe login (email or phone number)
+   - Clear warnings about online scams
+   - No confusing or hidden menus
+
+## Visual Design Requirements
+- Clean, simple UI
+- Large buttons (minimum 50–60px height)
+- High contrast colors
+- Minimal text per screen
+- Icons + labels together (not icons only)
+- Straightforward navigation bar with only 3–4 items max:
+  - Home
+  - Lessons
+  - Community
+  - Profile
+
+## Additional Notes for Replit
+- Organize the project into components/pages
+- Use a framework like React, Next.js, or a Replit-supported stack
+- Include basic placeholder data for lessons
+- Include mock UI for community posts
+- Make the code easy to expand later
+
+## Goal of the Generated App
+Create a very simple, beginner-friendly digital learning platform that seniors can use without frustration. The core idea is “teach technology slowly and clearly, with compassionate design.”
