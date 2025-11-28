@@ -22,9 +22,12 @@ export function TopNavigation() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b-2 border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-20 items-center justify-between gap-4 px-6">
+      <div className="container flex min-h-[80px] items-center justify-between gap-4 px-6">
         <Link href="/">
-          <div className="flex items-center gap-3 hover-elevate rounded-lg px-3 py-2 cursor-pointer">
+          <div 
+            className="flex items-center gap-3 hover-elevate rounded-lg px-3 py-2 cursor-pointer min-h-[60px]"
+            data-testid="link-logo"
+          >
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary">
               <BookOpen className="h-7 w-7 text-primary-foreground" />
             </div>
@@ -42,7 +45,7 @@ export function TopNavigation() {
               <Link key={item.href} href={item.href}>
                 <Button
                   variant={isActive ? "default" : "ghost"}
-                  className={`h-14 px-6 text-lg font-medium gap-3 ${
+                  className={`min-h-[60px] px-6 text-lg font-medium gap-3 ${
                     isActive ? "" : "text-muted-foreground"
                   }`}
                   data-testid={`nav-${item.label.toLowerCase()}`}
@@ -60,7 +63,7 @@ export function TopNavigation() {
             variant="outline"
             size="icon"
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            className="h-12 w-12"
+            className="h-[60px] w-[60px]"
             data-testid="button-theme-toggle"
             aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
           >

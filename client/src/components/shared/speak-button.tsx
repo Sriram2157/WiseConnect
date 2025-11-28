@@ -32,9 +32,9 @@ export function SpeakButton({ text, className = "", size = "default" }: SpeakBut
   };
 
   const sizeClasses = {
-    sm: "h-12 w-12",
-    default: "h-14 w-14",
-    lg: "h-16 w-16",
+    sm: "h-[60px] w-[60px]",
+    default: "h-16 w-16",
+    lg: "h-20 w-20",
   };
 
   const iconSizes = {
