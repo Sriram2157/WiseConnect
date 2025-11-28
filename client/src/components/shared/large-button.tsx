@@ -33,7 +33,7 @@ export function LargeButton({
       onClick={onClick}
       disabled={disabled || loading}
       type={type}
-      className={`h-16 min-h-[64px] px-8 text-xl font-semibold gap-4 rounded-xl w-full md:w-auto md:min-w-[280px] ${className}`}
+      className={`h-16 min-h-[64px] px-8 text-xl font-semibold gap-4 rounded-xl w-full md:w-auto md:min-w-[280px] transition-all duration-300 hover:shadow-lg hover:-translate-y-1 active:scale-95 active:transition-none ${className}`}
       data-testid={testId}
     >
       {loading ? (
