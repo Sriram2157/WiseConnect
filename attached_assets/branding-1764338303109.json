@@ -1,0 +1,113 @@
+{
+  "colorScheme": "dark",
+  "fonts": [
+    {
+      "family": "Mona Sans Variable",
+      "role": "body"
+    },
+    {
+      "family": "Brier",
+      "role": "heading"
+    },
+    {
+      "family": "Arial",
+      "role": "body"
+    }
+  ],
+  "colors": {
+    "primary": "#D2FF00",
+    "accent": "#D2FF00",
+    "background": "#282C20",
+    "textPrimary": "#282C20",
+    "link": "#DDE1D2"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "Mona Sans Variable",
+      "heading": "Brier"
+    },
+    "fontStacks": {
+      "heading": [
+        "Mona Sans Variable",
+        "Arial",
+        "sans-serif"
+      ],
+      "body": [
+        "Mona Sans Variable",
+        "Arial",
+        "sans-serif"
+      ],
+      "paragraph": [
+        "Mona Sans Variable",
+        "Arial",
+        "sans-serif"
+      ]
+    },
+    "fontSizes": {
+      "h1": "38px",
+      "h2": "32px",
+      "body": "22.2222px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 4,
+    "borderRadius": "0px"
+  },
+  "components": {
+    "input": {
+      "borderColor": "#CCCCCC",
+      "borderRadius": "0px"
+    },
+    "buttonPrimary": {
+      "background": "#D2FF00",
+      "textColor": "#282C20",
+      "borderColor": "#D2FF00",
+      "borderRadius": "9.6px",
+      "shadow": "none"
+    },
+    "buttonSecondary": {
+      "background": "#282C20",
+      "textColor": "#F4F4ED",
+      "borderRadius": "0px",
+      "shadow": "none"
+    }
+  },
+  "images": {
+    "logo": "File saved at: attached_assets/logo.svg",
+    "favicon": "File saved at: attached_assets/favicon.png",
+    "ogImage": "File saved at: attached_assets/ogImage.webp"
+  },
+  "__framework_hints": [],
+  "__llm_logo_reasoning": {
+    "selectedIndex": 0,
+    "reasoning": "Logo #0 visually represents the brand name '2025 McLaren Formula 1 Driver' and is located in the header, making it the most suitable choice for the brand logo.",
+    "confidence": 0.9
+  },
+  "__llm_button_reasoning": {
+    "primary": {
+      "index": 1,
+      "text": "business enquiriesbusiness enquiries",
+      "reasoning": "Button #1 has a vibrant green background (#D2FF00) which is the brand color and features action-oriented text 'business enquiries', making it the primary CTA."
+    },
+    "secondary": {
+      "index": 0,
+      "text": "business enquiriesbusiness enquiries",
+      "reasoning": "Button #0 has a dark background (#282C20) which is distinctly different from the primary button's vibrant color, making it suitable as the secondary button."
+    },
+    "confidence": 0.95
+  },
+  "personality": {
+    "tone": "modern",
+    "energy": "high",
+    "targetAudience": "Formula 1 fans and motorsport enthusiasts"
+  },
+  "designSystem": {
+    "framework": "custom",
+    "componentLibrary": null
+  },
+  "confidence": {
+    "buttons": 0.95,
+    "colors": 0.9,
+    "overall": 0.925
+  }
+}

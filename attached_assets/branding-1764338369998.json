@@ -1,0 +1,84 @@
+{
+  "colorScheme": "light",
+  "fonts": [
+    {
+      "family": "Ataero Retina OB Edition",
+      "role": "body"
+    }
+  ],
+  "colors": {
+    "primary": "#000000",
+    "accent": "#000000",
+    "background": "#E5E4E0",
+    "textPrimary": "#1D1D1D",
+    "link": "#000000"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "Ataero Retina OB Edition",
+      "heading": "Ataero Retina OB Edition"
+    },
+    "fontStacks": {
+      "heading": [
+        "Ataero Retina OB Edition",
+        "sans-serif"
+      ],
+      "body": [
+        "Ataero Retina OB Edition",
+        "sans-serif"
+      ],
+      "paragraph": [
+        "Ataero Retina OB Edition",
+        "sans-serif"
+      ]
+    },
+    "fontSizes": {
+      "h1": "137.143px",
+      "h2": "101.587px",
+      "body": "20.3175px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 8,
+    "borderRadius": "0px"
+  },
+  "components": {
+    "input": {
+      "borderColor": "#CCCCCC",
+      "borderRadius": "0px"
+    }
+  },
+  "images": {
+    "logo": "File saved at: attached_assets/logo.webp",
+    "favicon": "File saved at: attached_assets/favicon.png",
+    "ogImage": "File saved at: attached_assets/ogImage.webp"
+  },
+  "__framework_hints": [],
+  "__llm_button_reasoning": {
+    "primary": {
+      "index": -1,
+      "text": "N/A",
+      "reasoning": "All buttons have the same background color (#E5E4E0), which is not vibrant or saturated. Therefore, no button can be classified as a primary CTA."
+    },
+    "secondary": {
+      "index": -1,
+      "text": "N/A",
+      "reasoning": "Since there is no primary button identified, there cannot be a secondary button either. All buttons share the same color group."
+    },
+    "confidence": 0.5
+  },
+  "personality": {
+    "tone": "professional",
+    "energy": "medium",
+    "targetAudience": "business professionals and creatives"
+  },
+  "designSystem": {
+    "framework": "unknown",
+    "componentLibrary": null
+  },
+  "confidence": {
+    "buttons": 0.5,
+    "colors": 0.8,
+    "overall": 0.65
+  }
+}
