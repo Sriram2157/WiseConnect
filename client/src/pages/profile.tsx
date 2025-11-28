@@ -33,7 +33,9 @@ export default function ProfilePage() {
     highContrast, 
     setHighContrast,
     theme,
-    setTheme 
+    setTheme,
+    spotlightMode,
+    setSpotlightMode
   } = useAccessibility();
 
   const { data: progressStats } = useQuery<{ completed: number; total: number; percentage: number }>({

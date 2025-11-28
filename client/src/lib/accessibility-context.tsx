@@ -9,6 +9,8 @@ interface AccessibilityContextType {
   setHighContrast: (enabled: boolean) => void;
   theme: "light" | "dark";
   setTheme: (theme: "light" | "dark") => void;
+  spotlightMode: boolean;
+  setSpotlightMode: (enabled: boolean) => void;
   speak: (text: string, id?: string) => void;
   stopSpeaking: (id?: string) => void;
   isSpeaking: boolean;
@@ -44,6 +46,13 @@ export function AccessibilityProvider({ children }: { children: ReactNode }) {
       return (localStorage.getItem("wiseconnect-theme") as "light" | "dark") || "light";
     }
     return "light";
+  });
+
+  const [spotlightMode, setSpotlightModeState] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("wiseconnect-spotlight-mode") === "true";
+    }
+    return false;
   });
 
   const [isSpeaking, setIsSpeaking] = useState(false);
@@ -82,6 +91,21 @@ export function AccessibilityProvider({ children }: { children: ReactNode }) {
   }, [theme]);
 
   useEffect(() => {
+    localStorage.setItem("wiseconnect-spotlight-mode", String(spotlightMode));
+    if (spotlightMode) {
+      document.documentElement.classList.add("spotlight-mode");
+      const handleMouseMove = (e: MouseEvent) => {
+        document.documentElement.style.setProperty("--spotlight-x", `${e.clientX}px`);
+        document.documentElement.style.setProperty("--spotlight-y", `${e.clientY}px`);
+      };
+      window.addEventListener("mousemove", handleMouseMove);
+      return () => window.removeEventListener("mousemove", handleMouseMove);
+    } else {
+      document.documentElement.classList.remove("spotlight-mode");
+    }
+  }, [spotlightMode]);
+
+  useEffect(() => {
     return () => {
       if (speechSupported) {
         window.speechSynthesis.cancel();
@@ -99,6 +123,10 @@ export function AccessibilityProvider({ children }: { children: ReactNode }) {
 
   const setTheme = useCallback((newTheme: "light" | "dark") => {
     setThemeState(newTheme);
+  }, []);
+
+  const setSpotlightMode = useCallback((enabled: boolean) => {
+    setSpotlightModeState(enabled);
   }, []);
 
   const speak = useCallback((text: string, id?: string) => {
@@ -154,6 +182,8 @@ export function AccessibilityProvider({ children }: { children: ReactNode }) {
         setHighContrast,
         theme,
         setTheme,
+        spotlightMode,
+        setSpotlightMode,
         speak,
         stopSpeaking,
         isSpeaking,
