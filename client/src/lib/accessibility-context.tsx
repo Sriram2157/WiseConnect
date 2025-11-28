@@ -65,9 +65,9 @@ export function AccessibilityProvider({ children }: { children: ReactNode }) {
     document.documentElement.setAttribute("data-text-size", textSize);
     
     const textSizeStyles: Record<TextSize, string> = {
-      medium: "18px",
-      large: "20px",
-      "extra-large": "22px",
+      medium: "16px",
+      large: "18px",
+      "extra-large": "20px",
     };
     document.documentElement.style.fontSize = textSizeStyles[textSize];
   }, [textSize]);

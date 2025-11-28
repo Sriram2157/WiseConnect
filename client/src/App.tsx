@@ -34,9 +34,9 @@ function App() {
       <TooltipProvider>
         <AccessibilityProvider>
           <UserProvider>
-            <div className="min-h-screen bg-background text-foreground">
+            <div className="min-h-screen bg-background text-foreground w-full max-w-full overflow-x-hidden">
               <TopNavigation />
-              <main className="pb-28 md:pb-0">
+              <main className="pb-28 md:pb-0 w-full max-w-full overflow-x-hidden">
                 <Router />
               </main>
               <BottomNavigation />
