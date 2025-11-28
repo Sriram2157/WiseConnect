@@ -29,9 +29,9 @@ const TEXT_SIZE_CLASSES: Record<TextSize, string> = {
 export function AccessibilityProvider({ children }: { children: ReactNode }) {
   const [textSize, setTextSizeState] = useState<TextSize>(() => {
     if (typeof window !== "undefined") {
-      return (localStorage.getItem("wiseconnect-text-size") as TextSize) || "large";
+      return (localStorage.getItem("wiseconnect-text-size") as TextSize) || "medium";
     }
-    return "large";
+    return "medium";
   });
 
   const [highContrast, setHighContrastState] = useState(() => {

@@ -247,6 +247,22 @@ function WelcomeSection() {
         </CardContent>
       </Card>
 
+      <Card className="border-2 border-primary/20 bg-primary/5">
+        <CardContent className="pt-8 pb-8 space-y-4">
+          <div className="space-y-2">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+              About WiseConnect
+            </h2>
+            <p className="text-lg text-foreground leading-relaxed">
+              WiseConnect was created with a mission: to help older adults like you master technology with confidence. In today's world, digital skills are essential for staying connected with loved ones, managing your health, and accessing services you need.
+            </p>
+            <p className="text-lg text-foreground leading-relaxed">
+              We believe that age is no barrier to learning. Our lessons are designed to be simple, clear, and encouraging—taking as much time as you need, with no judgment. We're here to empower you to thrive in our digital age.
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+
       <div className="space-y-6">
         <h2 className="text-2xl font-bold text-foreground text-center">
           What You'll Learn
