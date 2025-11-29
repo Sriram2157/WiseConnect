@@ -5,10 +5,7 @@ import { Progress } from "@/components/ui/progress";
 import { LargeButton } from "@/components/shared/large-button";
 import { SpeakButton } from "@/components/shared/speak-button";
 import { DailyChallenge } from "@/components/home/daily-challenge";
-import { AnimatedCard } from "@/components/shared/animated-card";
-import { PageTransition } from "@/components/layout/page-transition";
 import { useUser } from "@/lib/user-context";
-import { motion } from "framer-motion";
 import { 
   ArrowRight, 
   BookOpen, 
@@ -45,9 +42,8 @@ export default function HomePage() {
   }
 
   return (
-    <PageTransition>
-      <div className="container max-w-4xl mx-auto px-6 py-8 pb-28 md:pb-12 space-y-10">
-        <motion.div className="flex items-start justify-between gap-4" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+    <div className="container max-w-4xl mx-auto px-6 py-8 pb-28 md:pb-12 space-y-10">
+      <div className="flex items-start justify-between gap-4 animate-fade-in-down">
         <div className="space-y-2">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground animate-fade-in-up" data-testid="text-welcome">
             Welcome back, {user.name}!
@@ -57,11 +53,13 @@ export default function HomePage() {
           </p>
         </div>
         <SpeakButton text={welcomeText} />
-        </motion.div>
+      </div>
 
-      <AnimatedCard delay={0.1}>
-        <DailyChallenge />
-      </AnimatedCard>
+      <Card className="border-2 card-hover animate-fade-in-up" style={{ animationDelay: '150ms' }}>
+        <CardContent className="pt-8 pb-8">
+          <DailyChallenge />
+        </CardContent>
+      </Card>
 
       {progressStats && (
         <Card className="border-2 card-hover animate-fade-in-up" style={{ animationDelay: '200ms' }}>
@@ -205,8 +203,7 @@ export default function HomePage() {
           </div>
         </CardContent>
       </Card>
-      </div>
-    </PageTransition>
+    </div>
   );
 }
 
