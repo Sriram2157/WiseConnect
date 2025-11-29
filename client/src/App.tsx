@@ -27,7 +27,7 @@ function Router() {
     <Switch>
       <Route path="/" component={() => <PageWrapper><HomePage /></PageWrapper>} />
       <Route path="/quiz" component={() => <PageWrapper><QuizPage /></PageWrapper>} />
-      <Route path="/lessons/:id" component={(props) => <PageWrapper><LessonDetailPage {...props} /></PageWrapper>} />
+      <Route path="/lessons/:id" component={() => <PageWrapper><LessonDetailPage /></PageWrapper>} />
       <Route path="/lessons" component={() => <PageWrapper><LessonsPage /></PageWrapper>} />
       <Route path="/community" component={() => <PageWrapper><CommunityPage /></PageWrapper>} />
       <Route path="/profile" component={() => <PageWrapper><ProfilePage /></PageWrapper>} />

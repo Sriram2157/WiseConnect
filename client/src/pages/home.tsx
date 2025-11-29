@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,6 +7,8 @@ import { LargeButton } from "@/components/shared/large-button";
 import { SpeakButton } from "@/components/shared/speak-button";
 import { DailyChallenge } from "@/components/home/daily-challenge";
 import { useUser } from "@/lib/user-context";
+import { initScrollAnimations, initHeroAnimations } from "@/animations/scrollAnimations";
+import "@/components/layout/micro-interactions.css";
 import { 
   ArrowRight, 
   BookOpen, 
@@ -19,6 +22,13 @@ import type { LessonWithProgress } from "@shared/schema";
 
 export default function HomePage() {
   const { user, isLoggedIn } = useUser();
+
+  useEffect(() => {
+    initHeroAnimations();
+    setTimeout(() => {
+      initScrollAnimations();
+    }, 100);
+  }, []);
 
   const { data: lessons } = useQuery<LessonWithProgress[]>({
     queryKey: [`/api/lessons?userId=${user.id}`],
@@ -55,8 +65,8 @@ export default function HomePage() {
         <SpeakButton text={welcomeText} />
       </div>
 
-      <div className="animation-card">
-        <Card className="border-2 card-hover">
+      <div className="animation-card card-glow">
+        <Card className="border-2 interactive-scale">
           <CardContent className="pt-8 pb-8">
             <DailyChallenge />
           </CardContent>
@@ -64,8 +74,8 @@ export default function HomePage() {
       </div>
 
       {progressStats && (
-        <div className="animation-card">
-          <Card className="border-2 card-hover">
+        <div className="animation-card card-glow">
+          <Card className="border-2 interactive-scale">
           <CardContent className="pt-8 pb-8 space-y-4">
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-4">

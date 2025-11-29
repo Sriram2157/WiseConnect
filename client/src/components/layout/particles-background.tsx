@@ -1,3 +1,5 @@
+import { CanvasParticles } from "./canvas-particles";
+
 export function ParticlesBackground() {
-  return null;
+  return <CanvasParticles />;
 }
