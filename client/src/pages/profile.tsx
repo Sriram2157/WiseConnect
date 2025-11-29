@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,6 +11,8 @@ import { LargeButton } from "@/components/shared/large-button";
 import { SpeakButton } from "@/components/shared/speak-button";
 import { useUser } from "@/lib/user-context";
 import { useAccessibility } from "@/lib/accessibility-context";
+import { initScrollAnimations, initHeroAnimations } from "@/animations/scrollAnimations";
+import "@/components/layout/micro-interactions.css";
 import { 
   User, 
   Award, 
@@ -40,6 +43,11 @@ export default function ProfilePage() {
     guidedMode,
     setGuidedMode
   } = useAccessibility();
+
+  useEffect(() => {
+    initHeroAnimations();
+    setTimeout(() => initScrollAnimations(), 100);
+  }, []);
 
   const { data: progressStats } = useQuery<{ completed: number; total: number; percentage: number }>({
     queryKey: [`/api/progress/stats?userId=${user.id}`],

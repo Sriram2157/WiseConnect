@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { initScrollAnimations, initHeroAnimations } from "@/animations/scrollAnimations";
+import "@/components/layout/micro-interactions.css";
 import {
   Dialog,
   DialogContent,
@@ -42,6 +44,11 @@ export default function CommunityPage() {
   const { user, isLoggedIn } = useUser();
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  useEffect(() => {
+    initHeroAnimations();
+    setTimeout(() => initScrollAnimations(), 100);
+  }, []);
 
   const { data: posts, isLoading } = useQuery<CommunityPost[]>({
     queryKey: [`/api/community/posts?category=${selectedCategory}`],

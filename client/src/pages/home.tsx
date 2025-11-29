@@ -100,8 +100,9 @@ export default function HomePage() {
       )}
 
       {currentLesson && (
-        <Card className="border-2 border-primary/30 bg-primary/5 card-hover animate-fade-in-up animate-glow" style={{ animationDelay: '300ms' }}>
-          <CardHeader className="pb-4">
+        <div className="animation-card card-glow">
+          <Card className="border-2 border-primary/30 bg-primary/5 interactive-scale">
+            <CardHeader className="pb-4">
             <div className="flex items-center gap-3 text-primary">
               <Sparkles className="h-6 w-6" />
               <span className="text-lg font-semibold">Continue Learning</span>
@@ -133,13 +134,15 @@ export default function HomePage() {
                 Continue Learning
               </LargeButton>
             </Link>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </div>
       )}
 
       {!currentLesson && completedLessons > 0 && completedLessons === lessons?.length && (
-        <Card className="border-2 border-success/30 bg-success/5 card-hover animate-fade-in-up animate-bounce-subtle" style={{ animationDelay: '300ms' }}>
-          <CardContent className="pt-8 pb-8 text-center space-y-4">
+        <div className="animation-card card-glow">
+          <Card className="border-2 border-success/30 bg-success/5 interactive-scale">
+            <CardContent className="pt-8 pb-8 text-center space-y-4">
             <div className="flex justify-center">
               <div className="flex h-20 w-20 items-center justify-center rounded-full bg-success/20">
                 <CheckCircle2 className="h-12 w-12 text-success" />
@@ -160,13 +163,15 @@ export default function HomePage() {
                 Visit Community
               </LargeButton>
             </Link>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </div>
       )}
 
       <div className="grid gap-6 md:grid-cols-2">
         <Link href="/lessons">
-          <Card className="border-2 card-hover cursor-pointer h-full animate-fade-in-up animate-stagger-enter" style={{ animationDelay: '400ms' }} data-testid="card-lessons-shortcut">
+          <div className="animation-card card-glow h-full">
+            <Card className="border-2 interactive-scale cursor-pointer h-full" data-testid="card-lessons-shortcut">
             <CardContent className="pt-8 pb-8 flex flex-col items-center text-center space-y-4">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10">
                 <BookOpen className="h-9 w-9 text-primary" />
@@ -180,11 +185,13 @@ export default function HomePage() {
                 </p>
               </div>
             </CardContent>
-          </Card>
+            </Card>
+          </div>
         </Link>
 
         <Link href="/community">
-          <Card className="border-2 card-hover cursor-pointer h-full animate-fade-in-up animate-stagger-enter" style={{ animationDelay: '480ms' }} data-testid="card-community-shortcut">
+          <div className="animation-card card-glow h-full">
+            <Card className="border-2 interactive-scale cursor-pointer h-full" data-testid="card-community-shortcut">
             <CardContent className="pt-8 pb-8 flex flex-col items-center text-center space-y-4">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-accent/20">
                 <Users className="h-9 w-9 text-accent-foreground" />
@@ -198,11 +205,13 @@ export default function HomePage() {
                 </p>
               </div>
             </CardContent>
-          </Card>
+            </Card>
+          </div>
         </Link>
       </div>
 
-      <Card className="border-2 border-warning/30 bg-warning/5">
+      <div className="animation-card card-glow">
+        <Card className="border-2 border-warning/30 bg-warning/5 interactive-scale">
         <CardContent className="pt-6 pb-6 flex items-center gap-4">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-warning/20 flex-shrink-0">
             <Shield className="h-7 w-7 text-warning-foreground" />
@@ -216,7 +225,8 @@ export default function HomePage() {
             </p>
           </div>
         </CardContent>
-      </Card>
+        </Card>
+      </div>
     </div>
   );
 }

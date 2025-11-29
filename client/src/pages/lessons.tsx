@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
@@ -5,6 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { SpeakButton } from "@/components/shared/speak-button";
 import { useUser } from "@/lib/user-context";
+import { initScrollAnimations, initHeroAnimations } from "@/animations/scrollAnimations";
+import "@/components/layout/micro-interactions.css";
 import { 
   Mail, 
   Video, 
@@ -25,6 +28,11 @@ const iconMap: Record<string, typeof Mail> = {
 
 export default function LessonsPage() {
   const { user, isLoggedIn } = useUser();
+
+  useEffect(() => {
+    initHeroAnimations();
+    setTimeout(() => initScrollAnimations(), 100);
+  }, []);
 
   const { data: lessons, isLoading } = useQuery<LessonWithProgress[]>({
     queryKey: [`/api/lessons?userId=${user.id}`],
