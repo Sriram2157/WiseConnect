@@ -21,51 +21,53 @@ export function AnimatedBackground() {
     }> = [];
 
     function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      initParticles();
+      if (canvas) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        initParticles();
+      }
     }
 
     function initParticles() {
       particles.length = 0;
-      const particleCount = Math.min(50, Math.floor((canvas.width * canvas.height) / 20000));
-      
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: Math.random() * 2 + 0.5,
-          speedX: (Math.random() - 0.5) * 0.3,
-          speedY: (Math.random() - 0.5) * 0.3,
-          opacity: Math.random() * 0.5 + 0.3,
-        });
+      if (canvas) {
+        const particleCount = Math.min(50, Math.floor((canvas.width * canvas.height) / 20000));
+        
+        for (let i = 0; i < particleCount; i++) {
+          particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() * 2 + 0.5,
+            speedX: (Math.random() - 0.5) * 0.3,
+            speedY: (Math.random() - 0.5) * 0.3,
+            opacity: Math.random() * 0.5 + 0.3,
+          });
+        }
       }
     }
 
     function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // Get color from CSS variables
-      const style = getComputedStyle(document.documentElement);
-      const primaryColor = style.getPropertyValue("--primary").trim();
-      
-      particles.forEach((p) => {
-        // Draw particle
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${primaryColor}, ${p.opacity})`;
-        ctx.fill();
+      if (ctx && canvas) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        const style = getComputedStyle(document.documentElement);
+        const primaryColor = style.getPropertyValue("--primary").trim();
+        
+        particles.forEach((p) => {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = `hsla(${primaryColor}, ${p.opacity})`;
+          ctx.fill();
 
-        // Update position
-        p.x += p.speedX;
-        p.y += p.speedY;
-        p.opacity += (Math.random() - 0.5) * 0.02;
-        p.opacity = Math.max(0.1, Math.min(0.6, p.opacity));
+          p.x += p.speedX;
+          p.y += p.speedY;
+          p.opacity += (Math.random() - 0.5) * 0.02;
+          p.opacity = Math.max(0.1, Math.min(0.6, p.opacity));
 
-        // Wrap around
-        if (p.x < 0 || p.x > canvas.width) p.speedX = -p.speedX;
-        if (p.y < 0 || p.y > canvas.height) p.speedY = -p.speedY;
-      });
+          if (p.x < 0 || p.x > canvas.width) p.speedX = -p.speedX;
+          if (p.y < 0 || p.y > canvas.height) p.speedY = -p.speedY;
+        });
+      }
 
       animationId = requestAnimationFrame(animate);
     }

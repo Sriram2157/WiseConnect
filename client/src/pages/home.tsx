@@ -205,7 +205,8 @@ export default function HomePage() {
           </div>
         </CardContent>
       </Card>
-    </div>
+      </div>
+    </PageTransition>
   );
 }
 
