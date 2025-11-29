@@ -6,7 +6,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { AccessibilityProvider } from "@/lib/accessibility-context";
 import { UserProvider } from "@/lib/user-context";
 import { TopNavigation, BottomNavigation } from "@/components/layout/navigation";
-import { AnimatedBackground } from "@/components/layout/animated-bg";
+import { ParticlesBackground } from "@/components/layout/particles-background";
+import { PageWrapper } from "@/components/layout/page-wrapper";
 import { SOSButton } from "@/components/lesson/sos-button";
 import { VoiceNavigation } from "@/components/shared/voice-navigation";
 import HomePage from "@/pages/home";
@@ -22,15 +23,15 @@ import NotFound from "@/pages/not-found";
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={HomePage} />
-      <Route path="/quiz" component={QuizPage} />
-      <Route path="/lessons" component={LessonsPage} />
-      <Route path="/lessons/:id" component={LessonDetailPage} />
-      <Route path="/community" component={CommunityPage} />
-      <Route path="/profile" component={ProfilePage} />
-      <Route path="/real-life-scenarios" component={RealLifeScenariosPage} />
-      <Route path="/scam-awareness" component={ScamAwarenessPage} />
-      <Route component={NotFound} />
+      <Route path="/" component={() => <PageWrapper><HomePage /></PageWrapper>} />
+      <Route path="/quiz" component={() => <PageWrapper><QuizPage /></PageWrapper>} />
+      <Route path="/lessons/:id" component={(props) => <PageWrapper><LessonDetailPage {...props} /></PageWrapper>} />
+      <Route path="/lessons" component={() => <PageWrapper><LessonsPage /></PageWrapper>} />
+      <Route path="/community" component={() => <PageWrapper><CommunityPage /></PageWrapper>} />
+      <Route path="/profile" component={() => <PageWrapper><ProfilePage /></PageWrapper>} />
+      <Route path="/real-life-scenarios" component={() => <PageWrapper><RealLifeScenariosPage /></PageWrapper>} />
+      <Route path="/scam-awareness" component={() => <PageWrapper><ScamAwarenessPage /></PageWrapper>} />
+      <Route component={() => <PageWrapper><NotFound /></PageWrapper>} />
     </Switch>
   );
 }
@@ -42,7 +43,7 @@ function App() {
         <AccessibilityProvider>
           <UserProvider>
             <VoiceNavigation />
-            <AnimatedBackground />
+            <ParticlesBackground />
             <div className="relative z-10 min-h-screen bg-background text-foreground w-full max-w-full overflow-x-hidden">
               <TopNavigation />
               <main className="pb-28 md:pb-0 w-full max-w-full overflow-x-hidden">
