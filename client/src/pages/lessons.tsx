@@ -116,9 +116,10 @@ export default function LessonsPage() {
 function LessonCard({ lesson, number }: { lesson: LessonWithProgress; number: number }) {
   const Icon = iconMap[lesson.iconName] || BookOpen;
   const isCompleted = lesson.progress?.completed;
-  const isStarted = lesson.progress ? lesson.progress.currentStep > 0 : false;
-  const progressPercentage = lesson.progress && lesson.progress.currentStep
-    ? Math.round((lesson.progress.currentStep / lesson.totalSteps) * 100)
+  const currentStep = lesson.progress?.currentStep ?? 0;
+  const isStarted = currentStep > 0;
+  const progressPercentage = currentStep
+    ? Math.round((currentStep / lesson.totalSteps) * 100)
     : 0;
 
   const difficultyColors: Record<string, string> = {
