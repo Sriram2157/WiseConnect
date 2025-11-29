@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Progress } from "@/components/ui/progress";
 import { LargeButton } from "@/components/shared/large-button";
 import { SpeakButton } from "@/components/shared/speak-button";
+import { DailyChallenge } from "@/components/home/daily-challenge";
 import { useUser } from "@/lib/user-context";
 import { 
   ArrowRight, 
@@ -53,6 +54,8 @@ export default function HomePage() {
         </div>
         <SpeakButton text={welcomeText} />
       </div>
+
+      <DailyChallenge />
 
       {progressStats && (
         <Card className="border-2 card-hover animate-fade-in-up" style={{ animationDelay: '200ms' }}>

@@ -22,7 +22,8 @@ import {
   Moon,
   Sun,
   LogOut,
-  Lock
+  Lock,
+  Lightbulb
 } from "lucide-react";
 
 export default function ProfilePage() {
@@ -211,6 +212,23 @@ export default function ProfilePage() {
                 </p>
               </div>
             </div>
+          </div>
+
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <Lightbulb className="h-6 w-6 text-muted-foreground" />
+              <div>
+                <Label className="text-lg font-medium">Guided Mode</Label>
+                <p className="text-base text-muted-foreground">
+                  Highlights buttons and shows helpful hints to guide you through tasks
+                </p>
+              </div>
+            </div>
+            <Switch
+              checked={guidedMode}
+              onCheckedChange={setGuidedMode}
+              data-testid="switch-guided-mode"
+            />
           </div>
         </CardContent>
       </Card>

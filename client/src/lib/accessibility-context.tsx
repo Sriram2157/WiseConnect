@@ -138,6 +138,10 @@ export function AccessibilityProvider({ children }: { children: ReactNode }) {
     setSpotlightModeState(enabled);
   }, []);
 
+  const setGuidedMode = useCallback((enabled: boolean) => {
+    setGuidedModeState(enabled);
+  }, []);
+
   const speak = useCallback((text: string, id?: string) => {
     if (!speechSupported) {
       return;
@@ -193,6 +197,8 @@ export function AccessibilityProvider({ children }: { children: ReactNode }) {
         setTheme,
         spotlightMode,
         setSpotlightMode,
+        guidedMode,
+        setGuidedMode,
         speak,
         stopSpeaking,
         isSpeaking,

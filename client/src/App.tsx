@@ -7,12 +7,15 @@ import { AccessibilityProvider } from "@/lib/accessibility-context";
 import { UserProvider } from "@/lib/user-context";
 import { TopNavigation, BottomNavigation } from "@/components/layout/navigation";
 import { SOSButton } from "@/components/lesson/sos-button";
+import { VoiceNavigation } from "@/components/shared/voice-navigation";
 import HomePage from "@/pages/home";
 import QuizPage from "@/pages/quiz";
 import LessonsPage from "@/pages/lessons";
 import LessonDetailPage from "@/pages/lesson-detail";
 import CommunityPage from "@/pages/community";
 import ProfilePage from "@/pages/profile";
+import RealLifeScenariosPage from "@/pages/real-life-scenarios";
+import ScamAwarenessPage from "@/pages/scam-awareness";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -24,6 +27,8 @@ function Router() {
       <Route path="/lessons/:id" component={LessonDetailPage} />
       <Route path="/community" component={CommunityPage} />
       <Route path="/profile" component={ProfilePage} />
+      <Route path="/real-life-scenarios" component={RealLifeScenariosPage} />
+      <Route path="/scam-awareness" component={ScamAwarenessPage} />
       <Route component={NotFound} />
     </Switch>
   );
@@ -35,6 +40,7 @@ function App() {
       <TooltipProvider>
         <AccessibilityProvider>
           <UserProvider>
+            <VoiceNavigation />
             <div className="min-h-screen bg-background text-foreground w-full max-w-full overflow-x-hidden">
               <TopNavigation />
               <main className="pb-28 md:pb-0 w-full max-w-full overflow-x-hidden">

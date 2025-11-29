@@ -75,18 +75,17 @@ export function ScamAwareness() {
                       </ul>
 
                       <div className="pt-4 flex gap-3">
-                        <LargeButton
-                          variant="default"
-                          size="sm"
-                          onClick={(e) => {
+                        <button
+                          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                             e.stopPropagation();
                             handleAnswer(example.id, true);
                           }}
-                          icon={<CheckCircle2 className="h-5 w-5" />}
+                          className="h-14 px-6 text-lg font-semibold rounded-xl bg-primary text-primary-foreground hover-elevate active-elevate-2 flex items-center justify-center gap-3"
                           data-testid={`button-understand-${example.id}`}
                         >
+                          <CheckCircle2 className="h-5 w-5" />
                           I Understand
-                        </LargeButton>
+                        </button>
                       </div>
 
                       {answers[example.id] && (
