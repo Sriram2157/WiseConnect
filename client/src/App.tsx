@@ -44,9 +44,9 @@ function App() {
       <TooltipProvider>
         <AccessibilityProvider>
           <UserProvider>
+            <BlobBackground />
             <VoiceNavigation />
             <ParticlesBackground />
-            <BlobBackground />
             <HeroBlob />
             <div className="relative z-10 min-h-screen bg-background text-foreground w-full max-w-full overflow-x-hidden">
               <TopNavigation />
