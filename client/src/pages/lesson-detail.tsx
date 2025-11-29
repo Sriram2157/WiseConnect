@@ -7,6 +7,10 @@ import { SpeakButton } from "@/components/shared/speak-button";
 import { ProgressIndicator } from "@/components/shared/progress-indicator";
 import { useUser } from "@/lib/user-context";
 import { apiRequest, queryClient } from "@/lib/queryClient";
+import { MockEmail } from "@/components/lesson/mock-email";
+import { MockMessages } from "@/components/lesson/mock-messages";
+import { MockBrowser } from "@/components/lesson/mock-browser";
+import { MockCamera } from "@/components/lesson/mock-camera";
 import { 
   ArrowLeft, 
   ArrowRight, 
@@ -176,6 +180,27 @@ export default function LessonDetailPage() {
 function StepContent({ step, isLast }: { step: LessonStep; isLast: boolean }) {
   const speakText = `${step.title}. ${step.content}${step.tipText ? `. Tip: ${step.tipText}` : ""}`;
 
+  const renderInteractiveComponent = () => {
+    const imagePlaceholder = step.imagePlaceholder?.toLowerCase() || "";
+    
+    if (imagePlaceholder.includes("email")) {
+      return <MockEmail />;
+    }
+    if (imagePlaceholder.includes("message")) {
+      return <MockMessages />;
+    }
+    if (imagePlaceholder.includes("browser")) {
+      return <MockBrowser />;
+    }
+    if (imagePlaceholder.includes("camera")) {
+      return <MockCamera />;
+    }
+    
+    return null;
+  };
+
+  const interactiveComponent = renderInteractiveComponent();
+
   return (
     <Card className="border-2">
       <CardContent className="pt-10 pb-10 space-y-8">
@@ -186,7 +211,9 @@ function StepContent({ step, isLast }: { step: LessonStep; isLast: boolean }) {
           <SpeakButton text={speakText} />
         </div>
 
-        {step.imagePlaceholder && (
+        {interactiveComponent ? (
+          interactiveComponent
+        ) : step.imagePlaceholder ? (
           <div className="relative aspect-video w-full max-w-lg mx-auto rounded-2xl bg-muted border-4 border-border overflow-hidden">
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center space-y-3 p-6">
@@ -197,7 +224,7 @@ function StepContent({ step, isLast }: { step: LessonStep; isLast: boolean }) {
               </div>
             </div>
           </div>
-        )}
+        ) : null}
 
         <div className="prose prose-lg max-w-none">
           <p className="text-xl leading-relaxed text-foreground whitespace-pre-line">
