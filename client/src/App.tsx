@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { AccessibilityProvider } from "@/lib/accessibility-context";
 import { UserProvider } from "@/lib/user-context";
 import { TopNavigation, BottomNavigation } from "@/components/layout/navigation";
+import { AnimatedBackground } from "@/components/layout/animated-bg";
 import { SOSButton } from "@/components/lesson/sos-button";
 import { VoiceNavigation } from "@/components/shared/voice-navigation";
 import HomePage from "@/pages/home";
@@ -41,7 +42,8 @@ function App() {
         <AccessibilityProvider>
           <UserProvider>
             <VoiceNavigation />
-            <div className="min-h-screen bg-background text-foreground w-full max-w-full overflow-x-hidden">
+            <AnimatedBackground />
+            <div className="relative z-10 min-h-screen bg-background text-foreground w-full max-w-full overflow-x-hidden">
               <TopNavigation />
               <main className="pb-28 md:pb-0 w-full max-w-full overflow-x-hidden">
                 <Router />

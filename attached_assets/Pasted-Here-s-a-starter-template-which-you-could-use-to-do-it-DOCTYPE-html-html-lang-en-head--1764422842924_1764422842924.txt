@@ -1,0 +1,187 @@
+Here's a starter template which you could use to do it
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WiseConnect – Animated UI Prototype</title>
+
+  <!-- GSAP for smooth animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    /* Basic reset & global styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f7fa;
+      color: #111;
+      overflow-x: hidden;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Full-screen animated background container */
+    #bg-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+    }
+
+    /* Container for content over background */
+    .app-container {
+      position: relative;
+      z-index: 10;
+      padding: 2rem;
+    }
+
+    /* Example card grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .card h3 {
+      margin-bottom: 0.75rem;
+      font-size: 1.4rem;
+    }
+    .card p {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    /* Example button style */
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: #4f75f0;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+      background: #3b5acc;
+    }
+
+    /* Simple fade-in for sections */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+
+  <div class="app-container">
+    <header>
+      <h1>WiseConnect</h1>
+      <p>Interactive UI prototype with smooth animations 🌟</p>
+    </header>
+
+    <section class="cards-grid">
+      <div class="card fade-in">
+        <h3>Lesson 1: Create Email</h3>
+        <p>Learn how to set up an email account with step-by-step instructions.</p>
+        <button class="btn">Start</button>
+      </div>
+      <div class="card fade-in">
+        <h3>Lesson 2: Video Call</h3>
+        <p>Understand how to make a video call with family.</p>
+        <button class="btn">Start</button>
+      </div>
+      <div class="card fade-in">
+        <h3>Lesson 3: Safe Browsing</h3>
+        <p>Basics of browsing safely and avoiding scams online.</p>
+        <button class="btn">Start</button>
+      </div>
+      <!-- Add more cards as needed -->
+    </section>
+  </div>
+
+  <script>
+    // 1. Animate fade-in cards on load / scroll
+    gsap.utils.toArray('.fade-in').forEach((card, index) => {
+      gsap.to(card, {
+        opacity: 1,
+        y: 0,
+        delay: 0.3 + index * 0.15,
+        duration: 0.6,
+        ease: 'power3.out'
+      });
+    });
+
+    // 2. Background particle animation using canvas
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particlesArray = [];
+    const numberOfParticles = 80;
+
+    function initCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      particlesArray = [];
+      for (let i = 0; i < numberOfParticles; i++) {
+        particlesArray.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 3 + 1,
+          speedX: (Math.random() - 0.5) * 0.5,
+          speedY: (Math.random() - 0.5) * 0.5
+        });
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(79, 117, 240, 0.4)';
+        ctx.fill();
+
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        if (p.x < 0 || p.x > canvas.width) p.speedX = -p.speedX;
+        if (p.y < 0 || p.y > canvas.height) p.speedY = -p.speedY;
+      });
+      requestAnimationFrame(animateParticles);
+    }
+
+    window.addEventListener('resize', () => {
+      initCanvas();
+    });
+
+    initCanvas();
+    animateParticles();
+  </script>
+</body>
+</html>
