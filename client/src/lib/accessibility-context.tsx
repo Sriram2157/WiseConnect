@@ -11,6 +11,8 @@ interface AccessibilityContextType {
   setTheme: (theme: "light" | "dark") => void;
   spotlightMode: boolean;
   setSpotlightMode: (enabled: boolean) => void;
+  guidedMode: boolean;
+  setGuidedMode: (enabled: boolean) => void;
   speak: (text: string, id?: string) => void;
   stopSpeaking: (id?: string) => void;
   isSpeaking: boolean;
@@ -51,6 +53,13 @@ export function AccessibilityProvider({ children }: { children: ReactNode }) {
   const [spotlightMode, setSpotlightModeState] = useState(() => {
     if (typeof window !== "undefined") {
       return localStorage.getItem("wiseconnect-spotlight-mode") === "true";
+    }
+    return false;
+  });
+
+  const [guidedMode, setGuidedModeState] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("wiseconnect-guided-mode") === "true";
     }
     return false;
   });

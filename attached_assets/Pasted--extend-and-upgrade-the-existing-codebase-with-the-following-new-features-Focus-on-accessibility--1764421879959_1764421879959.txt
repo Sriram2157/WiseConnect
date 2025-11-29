@@ -1,0 +1,127 @@
+ extend and upgrade the existing codebase with the following new features. 
+Focus on accessibility, smooth animations, and Apple-like design quality.
+
+==================================================
+FEATURE 1: Guided Mode (Handholding Navigation)
+==================================================
+- Add a toggle for “Guided Mode” in the settings.
+- When enabled, each tappable element should show:
+  • A soft glowing outline
+  • A pulsing animation
+  • Optional voice instructions using text-to-speech (TTS)
+- Add a simple on-screen assistant bubble that says:
+  “Tap here to continue” or “Try pressing this button.”
+- Use smooth transitions when the guide shifts from one UI element to another.
+
+==================================================
+FEATURE 2: Tech SOS Button (Help Me)
+==================================================
+- Add a floating round SOS button visible on every page.
+- When tapped, show a bottom-sheet menu with:
+  • “Call a family member” (placeholder action)
+  • “Send problem screenshot” (implement screenshot capture)
+  • “Replay instructions”
+- Add soft haptic-like animations: slight bounce + glow.
+
+==================================================
+FEATURE 3: Real-Life Scenario Lessons
+==================================================
+Create a new section called “Real-World Tasks” with:
+- Book a doctor appointment
+- Send a message to family
+- Spot an online scam
+- Pay a bill online
+
+Each task should:
+- Be step-by-step
+- Use visual examples and simulations
+- Include short voice instructions
+- Use large text and high contrast
+
+==================================================
+FEATURE 4: Voice Navigation
+==================================================
+Add basic voice commands to navigate the app:
+- “Go home”
+- “Next lesson”
+- “Make text bigger”
+- “Help”
+Use the Web Speech API or any reliable JS speech recognition library.
+
+==================================================
+FEATURE 5: Daily Tech Challenges
+==================================================
+Add a new “Daily Challenge” card to the Home screen:
+- New simple task every day
+- Confetti animation on completion
+- Track streaks
+- Positive reinforcement (“Nice job!”, “You’re improving!”)
+
+==================================================
+FEATURE 6: Adjustable UI Themes
+==================================================
+Add theme options in Settings:
+- High Contrast Mode
+- Extra Large Text Mode
+- Dark Mode
+- Simple Mode (hides advanced features)
+Include CSS variables to switch themes smoothly.
+
+==================================================
+FEATURE 7: Interactive Practice Mode
+==================================================
+Create safe, fake, sandboxed versions of:
+- Email inbox
+- Video call interface
+- Web browser window
+
+Users can practice:
+- Sending a fake message
+- Pressing call buttons
+- Searching in a safe mock browser
+None of these actions should perform real network actions.
+
+==================================================
+FEATURE 8: Scam Awareness Mini-Course
+==================================================
+Add a lightweight course that teaches how to avoid scams.
+Include:
+- Fake email examples
+- Fake link examples
+- A “Is this safe?” quiz
+Use subtle animations to highlight red flags.
+
+==================================================
+IMPORTANT DESIGN REQUIREMENTS
+==================================================
+- Maintain an Apple-like premium aesthetic:
+  • Soft gradients
+  • Glassmorphism on headers/cards
+  • Smooth fade and slide animations
+  • Rounded corners (18–24px)
+  • Gentle shadows
+
+- Use consistent animations everywhere:
+  • Page transitions
+  • Card hover lift
+  • Button tap scale effect
+  • Staggered element reveal on scroll
+
+- All text must be readable by seniors:
+  • Minimum 18–20px
+  • High contrast
+  • Large tap areas
+
+==================================================
+GOAL
+==================================================
+Upgrade the existing WiseConnect app to feel:
+- Elegant
+- Easy
+- Friendly
+- Senior-safe
+- Modern
+- Apple-quality
+
+Do not rewrite the whole app. 
+Extend what’s already there and integrate these features smoothly into the existing codebase.

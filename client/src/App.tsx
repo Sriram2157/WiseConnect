@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { AccessibilityProvider } from "@/lib/accessibility-context";
 import { UserProvider } from "@/lib/user-context";
 import { TopNavigation, BottomNavigation } from "@/components/layout/navigation";
+import { SOSButton } from "@/components/lesson/sos-button";
 import HomePage from "@/pages/home";
 import QuizPage from "@/pages/quiz";
 import LessonsPage from "@/pages/lessons";
@@ -40,6 +41,7 @@ function App() {
                 <Router />
               </main>
               <BottomNavigation />
+              <SOSButton />
             </div>
             <Toaster />
           </UserProvider>
