@@ -1,0 +1,339 @@
+1. FILE STRUCTURE (tell Replit to create this)
+src/
+  App.jsx
+  index.js
+  global.css
+
+  components/
+    Hero/
+      HeroSection.jsx
+      HeroBlob.jsx
+      hero.css
+    Particles/
+      ParticlesBackground.jsx
+    Cursor/
+      CustomCursor.jsx
+      cursor.css
+    Transitions/
+      PageTransition.jsx
+
+  shaders/
+      blobShader.glsl
+      waveShader.glsl
+      noiseShader.glsl
+
+  animations/
+      gsapTimelines.js
+      scrollAnimations.js
+      transitions.js
+
+  hooks/
+      useMousePosition.js
+      useParallax.js
+
+  pages/
+      Home.jsx
+      Lessons.jsx
+      About.jsx
+      Community.jsx
+
+🌊 2. WEBGL NOISE SHADER (blobShader.glsl)
+precision mediump float;
+
+uniform float u_time;
+uniform vec2 u_resolution;
+
+float noise(vec2 p){
+  return fract(sin(dot(p ,vec2(12.9898,78.233))) * 43758.5453);
+}
+
+float smoothNoise(vec2 p){
+  vec2 i = floor(p);
+  vec2 f = fract(p);
+
+  float a = noise(i);
+  float b = noise(i + vec2(1.0, 0.0));
+  float c = noise(i + vec2(0.0, 1.0));
+  float d = noise(i + vec2(1.0, 1.0));
+
+  vec2 u = f*f*(3.0-2.0*f);
+
+  return mix(a, b, u.x) +
+         (c - a)*u.y*(1.0 - u.x) +
+         (d - b)*u.x*u.y;
+}
+
+void main() {
+  vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+  float t = u_time * 0.2;
+
+  float distort = smoothNoise(uv * 4.0 + t);
+
+  vec3 col = vec3(0.1, 0.4, 1.0) + distort * 0.2;
+
+  gl_FragColor = vec4(col, 1.0);
+}
+
+🟦 3. THREE.JS FLOATING BLOB (HeroBlob.jsx)
+import React, { useRef, useEffect } from "react";
+import * as THREE from "three";
+
+export default function HeroBlob() {
+  const mount = useRef(null);
+
+  useEffect(() => {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(
+      55, window.innerWidth / window.innerHeight, 0.1, 1000
+    );
+    camera.position.z = 3;
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    mount.current.appendChild(renderer.domElement);
+
+    const geometry = new THREE.IcosahedronGeometry(1, 4);
+    const material = new THREE.MeshStandardMaterial({
+      color: "#4f72ff",
+      roughness: 0.3,
+      metalness: 0.6,
+    });
+
+    const mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+
+    const light = new THREE.PointLight("#ffffff", 1);
+    light.position.set(5, 5, 5);
+    scene.add(light);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      mesh.rotation.x += 0.004;
+      mesh.rotation.y += 0.006;
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    return () => {
+      mount.current.removeChild(renderer.domElement);
+    };
+  }, []);
+
+  return <div ref={mount} className="blob-container"></div>;
+}
+
+✨ 4. CUSTOM CURSOR (CustomCursor.jsx)
+import React, { useEffect } from "react";
+import "./cursor.css";
+
+export default function CustomCursor() {
+  useEffect(() => {
+    const cursor = document.querySelector(".cursor");
+
+    const move = (e) => {
+      cursor.style.left = e.clientX + "px";
+      cursor.style.top = e.clientY + "px";
+    };
+
+    window.addEventListener("mousemove", move);
+
+    return () => window.removeEventListener("mousemove", move);
+  }, []);
+
+  return <div className="cursor"></div>;
+}
+
+cursor.css
+.cursor {
+  width: 25px;
+  height: 25px;
+  border: 2px solid #4f72ff;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: 150ms ease-out;
+  z-index: 9999;
+}
+
+🌌 5. PARTICLE BACKGROUND (ParticlesBackground.jsx)
+import React from "react";
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
+
+export default function ParticlesBackground() {
+  const particlesInit = async (main) => await loadFull(main);
+
+  return (
+    <Particles
+      id="tsparticles"
+      init={particlesInit}
+      options={{
+        fullScreen: { enable: true, zIndex: -10 },
+        particles: {
+          number: { value: 70 },
+          move: { enable: true, speed: 0.4 },
+          size: { value: { min: 1, max: 3 } },
+          opacity: { value: 0.3 },
+          links: { enable: true, distance: 120, opacity: 0.2 }
+        }
+      }}
+    />
+  );
+}
+
+🎞️ 6. GSAP PAGE TRANSITIONS (PageTransition.jsx)
+import { motion } from "framer-motion";
+
+export default function PageTransition({ children }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      style={{ minHeight: "100vh" }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+🌀 7. GSAP SCROLL ANIMATIONS (scrollAnimations.js)
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+export function initScrollAnimations() {
+  gsap.from(".reveal", {
+    y: 40,
+    opacity: 0,
+    stagger: 0.2,
+    duration: 1.1,
+    scrollTrigger: {
+      trigger: ".reveal",
+      start: "top 85%",
+    },
+  });
+}
+
+🛠️ 8. HOOKS
+useMousePosition.js
+import { useState, useEffect } from "react";
+
+export default function useMousePosition() {
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const move = (e) => setPos({ x: e.clientX, y: e.clientY });
+    window.addEventListener("mousemove", move);
+    return () => window.removeEventListener("mousemove", move);
+  }, []);
+
+  return pos;
+}
+
+useParallax.js
+import { useState, useEffect } from "react";
+
+export default function useParallax(multiplier = 0.03) {
+  const [offset, setOffset] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setOffset(window.scrollY * multiplier);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return offset;
+}
+
+🏠 9. SAMPLE HERO SECTION (HeroSection.jsx)
+import React from "react";
+import HeroBlob from "./HeroBlob";
+import "./hero.css";
+
+export default function HeroSection() {
+  return (
+    <div className="hero-section">
+      <HeroBlob />
+
+      <div className="hero-text">
+        <h1 className="reveal">WiseConnect</h1>
+        <p className="reveal">Where seniors learn tech with confidence.</p>
+        <button className="cta reveal">Start Learning</button>
+      </div>
+    </div>
+  );
+}
+
+hero.css
+.hero-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: white;
+}
+
+.cta {
+  padding: 14px 30px;
+  border-radius: 30px;
+  background: #4f72ff;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cta:hover {
+  transform: scale(1.08);
+  box-shadow: 0px 4px 18px rgba(79, 114, 255, 0.5);
+}
+
+🎬 10. FULL APP WITH EVERYTHING (App.jsx)
+import React, { useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+
+import ParticlesBackground from "./components/Particles/ParticlesBackground";
+import CustomCursor from "./components/Cursor/CustomCursor";
+import HeroSection from "./components/Hero/HeroSection";
+import PageTransition from "./components/Transitions/PageTransition";
+
+import Home from "./pages/Home";
+import Lessons from "./pages/Lessons";
+import Community from "./pages/Community";
+
+import { initScrollAnimations } from "./animations/scrollAnimations";
+
+export default function App() {
+  useEffect(() => {
+    initScrollAnimations();
+  }, []);
+
+  return (
+    <>
+      <ParticlesBackground />
+      <CustomCursor />
+
+      <BrowserRouter>
+        <AnimatePresence mode="wait">
+          <Routes>
+            <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+            <Route path="/lessons" element={<PageTransition><Lessons /></PageTransition>} />
+            <Route path="/community" element={<PageTransition><Community /></PageTransition>} />
+          </Routes>
+        </AnimatePresence>
+      </BrowserRouter>
+    </>
+  );
+}

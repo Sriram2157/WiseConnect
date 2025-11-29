@@ -1,0 +1,236 @@
+You are rebuilding my existing website and transforming it into a world-class, agency-grade digital experience with the same energy, animation complexity, interactivity, responsiveness, motion quality, and visual impact as Itsoffbrand.com.
+
+NOTHING should look like a normal website.
+NOTHING should look like something a beginner or Replit template could generate.
+This must feel custom, premium, cinematic, interactive, immersive, and flawless.
+
+============================================================
+🔥 CORE DIRECTIVE
+============================================================
+Use the following technologies TOGETHER:
+
+• React or Next.js
+• GSAP (including ScrollTrigger, timelines, easings)
+• GSAP Flip plugin if needed
+• Three.js OR custom WebGL shaders for backgrounds
+• Custom GLSL shaders (noise, waves, color distortion)
+• Canvas-based particles
+• Mouse-based parallax layers
+• Layered depth animations
+• Micro-interactions everywhere
+• Smooth-scroll + inertia scrolling
+• Framer Motion or GSAP for page transitions
+• TailwindCSS or clean custom CSS
+
+============================================================
+🔥 EXACT VISUAL + ANIMATION GOALS
+============================================================
+
+The website MUST include:
+
+1. HERO SECTION THAT FEELS ALIVE  
+   • Multiple parallax layers  
+   • A floating 3D shape (WebGL or Three.js model)  
+   • Mouse-reactive depth parallax  
+   • Animated gradient or wavy shader in background  
+   • Title text animates in with split-text reveal  
+   • Subtitle slides/fades in  
+   • Button pulses slightly on hover  
+
+2. CUSTOM CURSOR  
+   • Glow ring following cursor  
+   • Particle trail behind cursor  
+   • Cursor interacts with UI (grows near clickable items)
+
+3. BACKGROUND SHADER  
+   • WebGL shader producing wavy liquid/noise animation  
+   • Smooth organic distortion, subtle gradient waves  
+   • Matching OffBrand.com style fluid movement  
+   • Entire background animated continuously  
+   • Reacts to mouse movement or scroll offset
+
+4. PARTICLE SYSTEM  
+   • Canvas or WebGL particles behind content  
+   • Slow ambient movement  
+   • Color palette matches brand  
+   • Optional connecting lines (like tsParticles but more refined)
+
+5. PAGE TRANSITIONS  
+   • Use Framer Motion or GSAP to animate between routes  
+   • Fade + slide + reveal + clip transitions  
+   • No instant page jumps  
+   • Animate out old page THEN animate in new one  
+   • Loader animation between transitions  
+
+6. SCROLL ANIMATIONS WITH SCROLLTRIGGER  
+   For EVERY section:  
+   • Staggered text reveal  
+   • Images scale + fade + parallax  
+   • Cards animate up from bottom  
+   • Brush-stroke or mask-reveal effects  
+   • Elements rotate slightly on entrance  
+   • Timelines sync with scroll position  
+
+7. MICRO-INTERACTIONS  
+   • Buttons scale by 1.05 on hover  
+   • Cards lift + shadow bloom  
+   • Icons animate with subtle loops  
+   • Section dividers animate (waves, shapes, blobs)
+
+8. DEPTH + LAYERING  
+   • Foreground UI elements with stronger shadows  
+   • Midground animated cards  
+   • Background shaders + particles  
+   • Smooth Z-index transitions  
+   • Parallax scroll with multiple depths
+
+============================================================
+🔥 PAGE-BY-PAGE ANIMATION BLUEPRINT
+============================================================
+
+HOME PAGE
+• Hero: WebGL blob or wave shader + parallax layers
+• Title: Split-text GSAP stagger reveal
+• Subtitle: Slide in from bottom
+• Buttons: Pulse hover with scale + glow
+• Feature cards: Staggered fade/slide-in
+• Background: Constant shader motion
+
+LESSONS PAGE
+• Animated page transition from Home
+• Cards appear with stagger scale + fade
+• Mouse parallax effect on cards
+• Section headers with text-split reveals
+
+COMMUNITY PAGE
+• Soft wavy shader in background
+• Posts animate upward with spring effect
+• ScrollTrigger: reveal posts in batches
+• Custom cursor enlarges over clickable content
+
+ABOUT / INFO PAGE
+• Wavy divider animations
+• Timeline-based scroll effects
+• Floating icons with slow rotation
+• Smooth fade-out on page leave
+
+============================================================
+🔥 GSAP TIMELINE PLAN (GLOBAL)
+============================================================
+
+Create a master GSAP timeline that includes:
+• Initial page load reveal
+• Header/nav fade & slide
+• Hero title split reveal
+• Hero image/shape intro animation
+• Staggered content entry
+• Global Hover animations
+• ScrollTrigger animations synced with viewport
+• Exit animations for page transitions
+
+Example structure:
+
+const master = gsap.timeline();
+master.from("header", {...});
+master.from(".hero-title .char", {..., stagger: 0.04});
+master.from(".hero-subtitle", {...});
+master.from(".hero-cta", {...});
+master.from(".card", {..., stagger: 0.1});
+master.add(scrollAnimations);
+export default master;
+
+============================================================
+🔥 FILE + FOLDER STRUCTURE
+============================================================
+
+src/
+  components/
+    Cursor/
+      CustomCursor.jsx
+      cursor.css
+    Hero/
+      HeroSection.jsx
+      HeroShader.js (GLSL)
+      hero.css
+    Particles/
+      ParticlesCanvas.jsx
+    Transitions/
+      PageTransition.jsx
+    UI/
+      Button.jsx
+      Card.jsx
+
+  pages/
+    Home.jsx
+    Lessons.jsx
+    Community.jsx
+    About.jsx
+
+  animations/
+    gsapAnimations.js
+    scrollAnimations.js
+    pageTransitions.js
+
+  shaders/
+    wave.glsl
+    blob.glsl
+    noise.glsl
+
+  hooks/
+    useScroll.js
+    useParallax.js
+    useMousePosition.js
+
+  App.jsx
+  index.jsx
+  global.css
+  smoothscroll.js
+
+============================================================
+🔥 CUSTOM WEBGL SHADER REQUIREMENTS
+============================================================
+
+The shader MUST animate:
+• Noise-based distortion  
+• Soft glowy gradients  
+• Wavy, liquid-like movement  
+• Colors shifting subtly  
+• Mouse interaction = ripple effect
+
+Shader types to include:
+• Perlin noise  
+• Simplex noise  
+• Curl noise  
+• Sin/cos wave combination  
+
+============================================================
+🔥 THE EXACT 3D FLOATING EFFECT FROM OFFBRAND
+============================================================
+
+Recreate:  
+• Floating blob shape (Three.js Mesh + ShaderMaterial)  
+• Slow rotation + wobble  
+• Soft lighting  
+• Mouse-follow parallax  
+• Shadow under blob  
+• GSAP timeline for intro animation  
+
+============================================================
+🔥 PERFORMANCE REQUIREMENTS
+============================================================
+
+• Use requestAnimationFrame for all real-time animations  
+• Lazy-load heavy components (like shaders)  
+• Use GPU-friendly properties (transform, opacity)  
+• Optimize Three.js meshes  
+• Provide reduced-motion fallback  
+
+============================================================
+🎯 FINAL GOAL
+============================================================
+
+Build a visually INSANE, animation-heavy, 3D-enhanced, shader-powered, GSAP-driven website experience that is on the SAME level of craftsmanship and creativity as Itsoffbrand.com.
+
+NOTHING about the output should look basic.
+
+Everything should look cinematic, modern, premium, immersive, and deeply interactive.

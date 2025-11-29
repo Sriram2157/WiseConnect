@@ -43,26 +43,29 @@ export default function HomePage() {
 
   return (
     <div className="container max-w-4xl mx-auto px-6 py-8 pb-28 md:pb-12 space-y-10">
-      <div className="flex items-start justify-between gap-4 animate-fade-in-down">
+      <div className="flex items-start justify-between gap-4">
         <div className="space-y-2">
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground animate-fade-in-up" data-testid="text-welcome">
+          <h1 className="hero-title text-3xl md:text-4xl font-bold text-foreground" data-testid="text-welcome">
             Welcome back, {user.name}!
           </h1>
-          <p className="text-xl text-muted-foreground animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+          <p className="hero-subtitle text-xl text-muted-foreground">
             Ready to continue your learning journey?
           </p>
         </div>
         <SpeakButton text={welcomeText} />
       </div>
 
-      <Card className="border-2 card-hover animate-fade-in-up" style={{ animationDelay: '150ms' }}>
-        <CardContent className="pt-8 pb-8">
-          <DailyChallenge />
-        </CardContent>
-      </Card>
+      <div className="animation-card">
+        <Card className="border-2 card-hover">
+          <CardContent className="pt-8 pb-8">
+            <DailyChallenge />
+          </CardContent>
+        </Card>
+      </div>
 
       {progressStats && (
-        <Card className="border-2 card-hover animate-fade-in-up" style={{ animationDelay: '200ms' }}>
+        <div className="animation-card">
+          <Card className="border-2 card-hover">
           <CardContent className="pt-8 pb-8 space-y-4">
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-4">
@@ -83,6 +86,7 @@ export default function HomePage() {
             <Progress value={progressStats.percentage} className="h-4" />
           </CardContent>
         </Card>
+        </div>
       )}
 
       {currentLesson && (

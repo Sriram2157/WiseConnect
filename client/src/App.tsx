@@ -8,6 +8,8 @@ import { UserProvider } from "@/lib/user-context";
 import { TopNavigation, BottomNavigation } from "@/components/layout/navigation";
 import { ParticlesBackground } from "@/components/layout/particles-background";
 import { PageWrapper } from "@/components/layout/page-wrapper";
+import { CustomCursor } from "@/components/layout/custom-cursor";
+import { HeroBlob } from "@/components/layout/hero-blob";
 import { SOSButton } from "@/components/lesson/sos-button";
 import { VoiceNavigation } from "@/components/shared/voice-navigation";
 import HomePage from "@/pages/home";
@@ -44,6 +46,8 @@ function App() {
           <UserProvider>
             <VoiceNavigation />
             <ParticlesBackground />
+            <CustomCursor />
+            <HeroBlob />
             <div className="relative z-10 min-h-screen bg-background text-foreground w-full max-w-full overflow-x-hidden">
               <TopNavigation />
               <main className="pb-28 md:pb-0 w-full max-w-full overflow-x-hidden">
