@@ -9,6 +9,7 @@ import { TopNavigation, BottomNavigation } from "@/components/layout/navigation"
 import { ParticlesBackground } from "@/components/layout/particles-background";
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { HeroBlob } from "@/components/layout/hero-blob";
+import { BlobBackground } from "@/components/layout/blob-background";
 import { SOSButton } from "@/components/lesson/sos-button";
 import { VoiceNavigation } from "@/components/shared/voice-navigation";
 import HomePage from "@/pages/home";
@@ -45,6 +46,7 @@ function App() {
           <UserProvider>
             <VoiceNavigation />
             <ParticlesBackground />
+            <BlobBackground />
             <HeroBlob />
             <div className="relative z-10 min-h-screen bg-background text-foreground w-full max-w-full overflow-x-hidden">
               <TopNavigation />
