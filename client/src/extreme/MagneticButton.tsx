@@ -1,5 +1,4 @@
 import { useRef, useEffect, ReactNode, HTMLAttributes } from "react";
-import gsap from "gsap";
 import "./extreme.css";
 
 interface MagneticButtonProps extends HTMLAttributes<HTMLButtonElement> {
@@ -8,46 +7,56 @@ interface MagneticButtonProps extends HTMLAttributes<HTMLButtonElement> {
 
 export function MagneticButton({ children, className = "", ...props }: MagneticButtonProps) {
   const btnRef = useRef<HTMLButtonElement>(null);
+  const stateRef = useRef({ x: 0, y: 0, targetX: 0, targetY: 0, rafId: 0 });
 
   useEffect(() => {
     const el = btnRef.current;
     if (!el) return;
 
+    const state = stateRef.current;
     const strength = 0.35;
 
     const move = (e: MouseEvent) => {
       const rect = el.getBoundingClientRect();
-      const relX = e.clientX - (rect.left + rect.width / 2);
-      const relY = e.clientY - (rect.top + rect.height / 2);
-
-      gsap.to(el, {
-        x: relX * strength,
-        y: relY * strength,
-        duration: 0.35,
-        ease: "power3.out",
-      });
+      state.targetX = (e.clientX - (rect.left + rect.width / 2)) * strength;
+      state.targetY = (e.clientY - (rect.top + rect.height / 2)) * strength;
     };
 
     const leave = () => {
-      gsap.to(el, {
-        x: 0,
-        y: 0,
-        duration: 0.6,
-        ease: "elastic.out(1,0.6)",
-      });
+      state.targetX = 0;
+      state.targetY = 0;
     };
 
-    el.addEventListener("mousemove", move);
-    el.addEventListener("mouseleave", leave);
+    const updatePosition = () => {
+      state.x += (state.targetX - state.x) * 0.2;
+      state.y += (state.targetY - state.y) * 0.2;
+
+      el.style.transform = `translate3d(${state.x}px, ${state.y}px, 0)`;
+
+      if (Math.abs(state.targetX - state.x) > 0.5 || Math.abs(state.targetY - state.y) > 0.5) {
+        state.rafId = requestAnimationFrame(updatePosition);
+      }
+    };
+
+    el.addEventListener("mousemove", move, { passive: true });
+    el.addEventListener("mouseleave", leave, { passive: true });
+
+    const startRAF = () => {
+      state.rafId = requestAnimationFrame(updatePosition);
+    };
+
+    el.addEventListener("mouseenter", startRAF);
 
     return () => {
       el.removeEventListener("mousemove", move);
       el.removeEventListener("mouseleave", leave);
+      el.removeEventListener("mouseenter", startRAF);
+      cancelAnimationFrame(state.rafId);
     };
   }, []);
 
   return (
-    <button ref={btnRef} className={`magnetic-btn ${className}`} {...props}>
+    <button ref={btnRef} className={`magnetic-btn will-change-transform ${className}`} {...props}>
       {children}
     </button>
   );

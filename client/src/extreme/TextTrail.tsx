@@ -18,12 +18,13 @@ interface Particle {
 export function TextTrail({ text = "WiseConnect" }: TextTrailProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
+  const stateRef = useRef({ lastEmitTime: 0, rafId: 0 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
     let w = canvas.width = window.innerWidth;
@@ -33,31 +34,35 @@ export function TextTrail({ text = "WiseConnect" }: TextTrailProps) {
       w = canvas.width = window.innerWidth;
       h = canvas.height = window.innerHeight;
     };
-    window.addEventListener("resize", resize);
+    window.addEventListener("resize", resize, { passive: true });
 
     const letters = text.split("");
     const particles = particlesRef.current;
+    const state = stateRef.current;
 
     const onMove = (e: MouseEvent) => {
+      const now = performance.now();
+      if (now - state.lastEmitTime < 16) return;
+      state.lastEmitTime = now;
+
       const x = e.clientX;
       const y = e.clientY;
 
-      for (let i = 0; i < Math.min(letters.length, 6); i++) {
+      for (let i = 0; i < 2; i++) {
         particles.push({
           x,
           y,
-          vx: (Math.random() - 0.5) * 2,
-          vy: -Math.random() * 2 - 1,
+          vx: (Math.random() - 0.5) * 3,
+          vy: -Math.random() * 2.5 - 1,
           life: 0,
-          ttl: 80 + Math.random() * 30,
+          ttl: 60 + Math.random() * 20,
           char: letters[Math.floor(Math.random() * letters.length)],
         });
       }
     };
 
-    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mousemove", onMove, { passive: true });
 
-    let raf: number;
     const render = () => {
       ctx.clearRect(0, 0, w, h);
 
@@ -65,27 +70,28 @@ export function TextTrail({ text = "WiseConnect" }: TextTrailProps) {
         const p = particles[i];
         p.x += p.vx;
         p.y += p.vy;
-        p.vy += 0.08;
+        p.vy += 0.12;
         p.life++;
 
-        const alpha = 1 - p.life / p.ttl;
-        ctx.globalAlpha = alpha;
-        ctx.font = `${16 + (p.ttl - p.life) * 0.1}px system-ui, -apple-system`;
-        ctx.fillStyle = `rgba(79,114,255, ${alpha})`;
-        ctx.fillText(p.char, p.x, p.y);
-
-        if (p.life > p.ttl) {
+        const alpha = Math.max(0, 1 - p.life / p.ttl);
+        if (alpha <= 0) {
           particles.splice(i, 1);
+          continue;
         }
+
+        ctx.globalAlpha = alpha;
+        ctx.font = `bold ${14 + (p.ttl - p.life) * 0.15}px system-ui`;
+        ctx.fillStyle = `rgba(79,114,255,${alpha})`;
+        ctx.fillText(p.char, p.x, p.y);
       }
 
-      raf = requestAnimationFrame(render);
+      state.rafId = requestAnimationFrame(render);
     };
 
     render();
 
     return () => {
-      cancelAnimationFrame(raf);
+      cancelAnimationFrame(state.rafId);
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("resize", resize);
     };

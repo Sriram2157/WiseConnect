@@ -3,52 +3,51 @@ import { useEffect, useRef } from "react";
 export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
+  const stateRef = useRef({ mouseX: 0, mouseY: 0, dotX: 0, dotY: 0, rafId: 0 });
 
   useEffect(() => {
-    let mouseX = 0;
-    let mouseY = 0;
-    let dotX = 0;
-    let dotY = 0;
+    const state = stateRef.current;
 
     const handleMouseMove = (e: MouseEvent) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
+      state.mouseX = e.clientX;
+      state.mouseY = e.clientY;
 
       if (cursorRef.current) {
-        cursorRef.current.style.left = mouseX + "px";
-        cursorRef.current.style.top = mouseY + "px";
+        cursorRef.current.style.transform = `translate3d(${state.mouseX}px, ${state.mouseY}px, 0)`;
       }
     };
 
     const updateDot = () => {
-      dotX += (mouseX - dotX) * 0.15;
-      dotY += (mouseY - dotY) * 0.15;
+      state.dotX += (state.mouseX - state.dotX) * 0.2;
+      state.dotY += (state.mouseY - state.dotY) * 0.2;
 
       if (dotRef.current) {
-        dotRef.current.style.left = dotX + "px";
-        dotRef.current.style.top = dotY + "px";
+        dotRef.current.style.transform = `translate3d(${state.dotX}px, ${state.dotY}px, 0)`;
       }
 
-      requestAnimationFrame(updateDot);
+      state.rafId = requestAnimationFrame(updateDot);
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     updateDot();
 
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(state.rafId);
+    };
   }, []);
 
   return (
     <>
       <div
         ref={cursorRef}
-        className="fixed pointer-events-none z-[9999] transform -translate-x-1/2 -translate-y-1/2"
+        className="fixed pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 will-change-transform"
       >
         <div className="w-6 h-6 border-2 border-blue-500 rounded-full"></div>
       </div>
       <div
         ref={dotRef}
-        className="fixed pointer-events-none z-[9998] transform -translate-x-1/2 -translate-y-1/2"
+        className="fixed pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 will-change-transform"
       >
         <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
       </div>

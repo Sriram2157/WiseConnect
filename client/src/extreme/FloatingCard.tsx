@@ -1,5 +1,4 @@
 import { useRef, useEffect, ReactNode } from "react";
-import gsap from "gsap";
 import "./extreme.css";
 
 interface FloatingCardProps {
@@ -8,73 +7,68 @@ interface FloatingCardProps {
 
 export function FloatingCard({ children }: FloatingCardProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const stateRef = useRef({ rotX: 0, rotY: 0, scale: 1, shadowX: 0, shadowY: 0, rafId: 0, targetRotX: 0, targetRotY: 0, targetScale: 1, targetShadowX: 0, targetShadowY: 0 });
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
+    const state = stateRef.current;
+
     const onMove = (e: MouseEvent) => {
       const rect = el.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width;
       const y = (e.clientY - rect.top) / rect.height;
-      const rotX = (y - 0.5) * 10;
-      const rotY = (x - 0.5) * -10;
-
-      gsap.to(el, {
-        rotationX: rotX,
-        rotationY: rotY,
-        scale: 1.03,
-        duration: 0.6,
-        ease: "power3.out",
-      });
-
-      const shadow = el.querySelector(".card-shadow") as HTMLElement;
-      if (shadow) {
-        gsap.to(shadow, {
-          x: (x - 0.5) * 20,
-          y: (y - 0.5) * 20,
-          duration: 0.6,
-          ease: "power3.out",
-        });
-      }
+      state.targetRotX = (y - 0.5) * 10;
+      state.targetRotY = (x - 0.5) * -10;
+      state.targetScale = 1.03;
+      state.targetShadowX = (x - 0.5) * 20;
+      state.targetShadowY = (y - 0.5) * 20;
     };
 
     const onLeave = () => {
-      gsap.to(el, {
-        rotationX: 0,
-        rotationY: 0,
-        scale: 1,
-        duration: 0.8,
-        ease: "elastic.out(1,0.4)",
-      });
+      state.targetRotX = 0;
+      state.targetRotY = 0;
+      state.targetScale = 1;
+      state.targetShadowX = 0;
+      state.targetShadowY = 0;
+    };
+
+    const updateTransforms = () => {
+      state.rotX += (state.targetRotX - state.rotX) * 0.15;
+      state.rotY += (state.targetRotY - state.rotY) * 0.15;
+      state.scale += (state.targetScale - state.scale) * 0.15;
+      state.shadowX += (state.targetShadowX - state.shadowX) * 0.15;
+      state.shadowY += (state.targetShadowY - state.shadowY) * 0.15;
+
+      el.style.transform = `perspective(1000px) rotateX(${state.rotX}deg) rotateY(${state.rotY}deg) scale3d(${state.scale}, ${state.scale}, 1)`;
 
       const shadow = el.querySelector(".card-shadow") as HTMLElement;
       if (shadow) {
-        gsap.to(shadow, {
-          x: 0,
-          y: 0,
-          duration: 0.8,
-          ease: "elastic.out(1,0.4)",
-        });
+        shadow.style.transform = `translate3d(${state.shadowX}px, ${state.shadowY}px, 0)`;
       }
+
+      state.rafId = requestAnimationFrame(updateTransforms);
     };
 
-    el.addEventListener("mousemove", onMove);
-    el.addEventListener("mouseleave", onLeave);
+    el.addEventListener("mousemove", onMove, { passive: true });
+    el.addEventListener("mouseleave", onLeave, { passive: true });
+    updateTransforms();
 
     return () => {
       el.removeEventListener("mousemove", onMove);
       el.removeEventListener("mouseleave", onLeave);
+      cancelAnimationFrame(state.rafId);
     };
   }, []);
 
   return (
     <div
-      className="floating-card"
+      className="floating-card will-change-transform"
       ref={ref}
       style={{ transformStyle: "preserve-3d" } as React.CSSProperties}
     >
-      <div className="card-shadow" />
+      <div className="card-shadow will-change-transform" />
       <div className="card-inner">{children}</div>
     </div>
   );
