@@ -122,4 +122,4 @@ With senior centers, NGOs, and community groups.
 My goal is to make WiseConnect a tool that helps older adults stay connected, confident, and independent. And honestly, I hope it becomes something that makes their lives feel a little easier and a little less lonely.
 
 # **Try it out:**
-  wiseconnect.netlify.app
+  https://wiseconnect-647p.onrender.com/
